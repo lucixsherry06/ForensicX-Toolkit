@@ -1,8 +1,8 @@
-import docx
+from docx import Document
 from pprint import pprint
 
 def extract_docx_metadata(docx_file: str):
-    doc = docx.Document(docx_file)
+    doc = Document(docx_file)
     core_properties = doc.core_properties
 
     metadata = {}
@@ -17,6 +17,7 @@ def extract_docx_metadata(docx_file: str):
         if callable(value):
             continue
 
+        # Fix datetime fields
         if prop in ["created", "modified", "last_printed"]:
             if value:
                 value = value.strftime("%Y-%m-%d %H:%M:%S")
@@ -27,10 +28,10 @@ def extract_docx_metadata(docx_file: str):
 
     # Custom properties (if available)
     try:
-        custom_properties = core_properties.custom_properties
-        if custom_properties:
+        custom_props = core_properties.custom_properties
+        if custom_props:
             metadata["custom_properties"] = {
-                prop.name: prop.value for prop in custom_properties
+                prop.name: prop.value for prop in custom_props
             }
     except AttributeError:
         pass
