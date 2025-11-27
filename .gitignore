@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+dfenv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Media or temp files
+*.jpg
+*.jpeg
+*.png
+*.pdf
+*.mp4
+*.mp3
+
+# IDEs
+.vscode/
+.idea/
+
+# Others
+*.zip
+*.rar
+
+#Sample Folder
+Sample/
